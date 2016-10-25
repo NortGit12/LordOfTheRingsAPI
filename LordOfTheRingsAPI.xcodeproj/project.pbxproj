@@ -14,6 +14,8 @@
 		1F34802F1DBFF5BA0079EF5A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34802E1DBFF5BA0079EF5A /* Character.swift */; };
 		1F3480311DBFF5C00079EF5A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3480301DBFF5C00079EF5A /* Location.swift */; };
 		1F3480341DC001290079EF5A /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3480331DC001290079EF5A /* NetworkController.swift */; };
+		1F3480361DC001A40079EF5A /* CharacterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3480351DC001A40079EF5A /* CharacterController.swift */; };
+		1F3480391DC009F90079EF5A /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3480381DC009F90079EF5A /* LocationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		1F34802E1DBFF5BA0079EF5A /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		1F3480301DBFF5C00079EF5A /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1F3480331DC001290079EF5A /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		1F3480351DC001A40079EF5A /* CharacterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterController.swift; sourceTree = "<group>"; };
+		1F3480381DC009F90079EF5A /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 				1F34801B1DBFED750079EF5A /* AppDelegate.swift */,
 				1F3480331DC001290079EF5A /* NetworkController.swift */,
 				1F3480321DBFFD440079EF5A /* Model */,
+				1F3480371DC002E40079EF5A /* ModelController */,
 				1F34802D1DBFF5AE0079EF5A /* Resources */,
 			);
 			path = LordOfTheRingsAPI;
@@ -84,6 +89,15 @@
 				1F3480301DBFF5C00079EF5A /* Location.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		1F3480371DC002E40079EF5A /* ModelController */ = {
+			isa = PBXGroup;
+			children = (
+				1F3480351DC001A40079EF5A /* CharacterController.swift */,
+				1F3480381DC009F90079EF5A /* LocationController.swift */,
+			);
+			name = ModelController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +176,8 @@
 				1F3480341DC001290079EF5A /* NetworkController.swift in Sources */,
 				1F34801C1DBFED750079EF5A /* AppDelegate.swift in Sources */,
 				1F3480311DBFF5C00079EF5A /* Location.swift in Sources */,
+				1F3480361DC001A40079EF5A /* CharacterController.swift in Sources */,
+				1F3480391DC009F90079EF5A /* LocationController.swift in Sources */,
 				1F34802F1DBFF5BA0079EF5A /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

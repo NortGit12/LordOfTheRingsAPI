@@ -43,6 +43,11 @@ extension Character {
     // MARK: - Properties
     //==================================================
     
+    var addNewCharacterURL: URL? {
+        
+        return CharacterController.baseURL?.appendingPathComponent(self.identifier.uuidString).appendingPathExtension("json")
+    }
+    
     var dictionary: [String : Any] {
         
         return [nameKey: self.name, descriptionKey: self.description]
