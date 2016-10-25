@@ -13,6 +13,7 @@
 		1F3480261DBFED750079EF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3480241DBFED750079EF5A /* LaunchScreen.storyboard */; };
 		1F34802F1DBFF5BA0079EF5A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34802E1DBFF5BA0079EF5A /* Character.swift */; };
 		1F3480311DBFF5C00079EF5A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3480301DBFF5C00079EF5A /* Location.swift */; };
+		1F3480341DC001290079EF5A /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3480331DC001290079EF5A /* NetworkController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1F3480271DBFED750079EF5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F34802E1DBFF5BA0079EF5A /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		1F3480301DBFF5C00079EF5A /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1F3480331DC001290079EF5A /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				1F34801B1DBFED750079EF5A /* AppDelegate.swift */,
+				1F3480331DC001290079EF5A /* NetworkController.swift */,
 				1F3480321DBFFD440079EF5A /* Model */,
 				1F34802D1DBFF5AE0079EF5A /* Resources */,
 			);
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3480341DC001290079EF5A /* NetworkController.swift in Sources */,
 				1F34801C1DBFED750079EF5A /* AppDelegate.swift in Sources */,
 				1F3480311DBFF5C00079EF5A /* Location.swift in Sources */,
 				1F34802F1DBFF5BA0079EF5A /* Character.swift in Sources */,
@@ -322,6 +326,7 @@
 				1F34802C1DBFED750079EF5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
