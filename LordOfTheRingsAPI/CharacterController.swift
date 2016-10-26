@@ -123,7 +123,9 @@ class CharacterController {
                 
                 let characters = arrayOfCharacterDictionaries.flatMap{ Character(identifier: $0.0, dictionary: $0.1) }
                 
-                completion(characters)
+                let sortedCharacters = characters.sorted(by: { $0.name < $1.name })
+                
+                completion(sortedCharacters)
             }
         }
     }

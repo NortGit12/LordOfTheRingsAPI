@@ -119,8 +119,9 @@ class LocationController {
                 }
                 
                 let locations = arrayOfLocationDictionaries.flatMap{ Location(identifier: $0.0, dictionary: $0.1) }
+                let sortedLocations = locations.sorted(by: { $0.name < $1.name })
                 
-                completion(locations)
+                completion(sortedLocations)
             }
         }
     }
