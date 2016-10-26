@@ -47,6 +47,11 @@ extension Location {
         return LocationController.baseURL?.appendingPathComponent(self.identifier.uuidString).appendingPathExtension("json")
     }
     
+    var deleteLocationURL: URL? {
+        
+        return LocationController.baseURL?.appendingPathComponent(self.identifier.uuidString).appendingPathExtension("json")
+    }
+    
     var dictionary: [String : Any] {
         
         return [nameKey: self.name, descriptionKey: self.description]

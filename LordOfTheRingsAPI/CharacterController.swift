@@ -74,13 +74,32 @@ class CharacterController {
                 NSLog("New character \"\(newCharacter.name)\" successfully added to the API.")
             }
             
-            self.getFromAPI { (characters) in
+            self.getFromAPI()
+        }
+    }
+    
+    func deleteFromAPI(character: Character) {
+        
+        guard let deleteCharacterURL = character.deleteCharacterURL else {
+            
+            NSLog("Error getting delete endpoint for character \(character.name).")
+            return
+        }
+        
+        NetworkController.performRequest(for: deleteCharacterURL, httpMethod: .Delete) { (data, error) in
+            
+            if let error = error {
                 
-                if characters.count > 0 {
-                    
-                    self.characters = characters
-                }
+                NSLog("Error: \(error.localizedDescription)")
+                return
             }
+            
+            if let _ = data {
+                
+                NSLog("Character \(character.name) successfully deleted from the API.")
+            }
+            
+            self.getFromAPI()
         }
     }
     
@@ -122,8 +141,9 @@ class CharacterController {
                 print("arrayOfCharacterDictionaries = \(arrayOfCharacterDictionaries)")
                 
                 let characters = arrayOfCharacterDictionaries.flatMap{ Character(identifier: $0.0, dictionary: $0.1) }
-                
                 let sortedCharacters = characters.sorted(by: { $0.name < $1.name })
+                
+                self.characters = sortedCharacters
                 
                 completion(sortedCharacters)
             }

@@ -74,13 +74,32 @@ class LocationController {
                 NSLog("New location \"\(newLocation.name)\" successfully added to the API.")
             }
             
-            self.getFromAPI { (locations) in
+            self.getFromAPI()
+        }
+    }
+    
+    func deleteFromAPI(location: Location) {
+        
+        guard let deleteLocationURL = location.deleteLocationURL else {
+            
+            NSLog("Error getting delete endpoint for location \(location.name).")
+            return
+        }
+        
+        NetworkController.performRequest(for: deleteLocationURL, httpMethod: .Delete) { (data, error) in
+            
+            if let error = error {
                 
-                if locations.count > 0 {
-                    
-                    self.locations = locations
-                }
+                NSLog("Error: \(error.localizedDescription)")
+                return
             }
+            
+            if let _ = data {
+                
+                NSLog("Location \(location.name) successfully deleted from the API.")
+            }
+            
+            self.getFromAPI()
         }
     }
     
@@ -120,6 +139,8 @@ class LocationController {
                 
                 let locations = arrayOfLocationDictionaries.flatMap{ Location(identifier: $0.0, dictionary: $0.1) }
                 let sortedLocations = locations.sorted(by: { $0.name < $1.name })
+                
+                self.locations = sortedLocations
                 
                 completion(sortedLocations)
             }

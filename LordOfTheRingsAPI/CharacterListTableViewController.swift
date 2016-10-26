@@ -53,6 +53,16 @@ class CharacterListTableViewController: UITableViewController, CharacterControll
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            let character = characterController.characters[indexPath.row]
+            
+            characterController.deleteFromAPI(character: character)
+        }
+    }
+    
     //==================================================
     // MARK: - CharacterControllerDelegate
     //==================================================

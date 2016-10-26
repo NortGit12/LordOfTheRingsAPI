@@ -52,6 +52,16 @@ class LocationListTableViewController: UITableViewController, LocationController
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            let location = locationController.locations[indexPath.row]
+            
+            locationController.deleteFromAPI(location: location)
+        }
+    }
+    
     //==================================================
     // MARK: - LocationControllerDelegate
     //==================================================
