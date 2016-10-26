@@ -67,10 +67,37 @@ extension Character {
         guard let identifier = UUID(uuidString: identifier)
             , let name = dictionary[nameKey] as? String
             , let description = dictionary[descriptionKey] as? String
-            else { return nil }
+            else {
+                
+                NSLog("Error creating Character instance from a dictionary.")
+                return nil
+        }
         
         self.identifier = identifier
         self.name = name
         self.description = description
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

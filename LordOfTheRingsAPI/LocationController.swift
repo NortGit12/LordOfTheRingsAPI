@@ -8,6 +8,11 @@
 
 import Foundation
 
+protocol LocationControllerDelegate {
+    
+    func locationsUpdated(locations: [Location])
+}
+
 class LocationController {
     
     //==================================================
@@ -18,13 +23,32 @@ class LocationController {
     
     static let getAllLocationsURL = LocationController.baseURL?.appendingPathExtension("json")
     
+    var locations = [Location]() {
+        
+        didSet {
+            
+            DispatchQueue.main.async {
+                
+                self.delegate?.locationsUpdated(locations: self.locations)
+            }
+        }
+    }
+    
+    var delegate: LocationControllerDelegate?
+    
     //==================================================
     // MARK: - Initializer
     //==================================================
     
     init() {
         
-        getFromAPI()
+        getFromAPI { (locations) in
+            
+            if locations.count > 0 {
+                
+                self.locations = locations
+            }
+        }
     }
     
     //==================================================
@@ -37,7 +61,7 @@ class LocationController {
         
         guard let addNewLocationURL = newLocation.addNewLocationURL else { return }
         
-        NetworkController.performRequest(for: addNewLocationURL, httpMethod: .Put) { (data, error) in
+        NetworkController.performRequest(for: addNewLocationURL, httpMethod: .Put, body: newLocation.jsonData) { (data, error) in
             
             if let error = error {
                 
@@ -49,10 +73,18 @@ class LocationController {
                 
                 NSLog("New location \"\(newLocation.name)\" successfully added to the API.")
             }
+            
+            self.getFromAPI { (locations) in
+                
+                if locations.count > 0 {
+                    
+                    self.locations = locations
+                }
+            }
         }
     }
     
-    func getFromAPI(allLocations completion: (_ locations: [Location]) -> Void = { _ in }) {
+    func getFromAPI(allLocations completion: @escaping (_ locations: [Location]) -> Void = { _ in }) {
         
         guard let getAllLocationsURL = LocationController.getAllLocationsURL else { return }
         
@@ -86,7 +118,7 @@ class LocationController {
                         return
                 }
                 
-                let locations = arrayOfLocationDictionaries.flatMap{ Location(identifier: $0, dictionary: $1) }
+                let locations = arrayOfLocationDictionaries.flatMap{ Location(identifier: $0.0, dictionary: $0.1) }
                 
                 completion(locations)
             }

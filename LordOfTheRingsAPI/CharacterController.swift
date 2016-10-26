@@ -8,6 +8,11 @@
 
 import Foundation
 
+protocol CharacterControllerDelegate {
+    
+    func charactersUpdated(characters: [Character])
+}
+
 class CharacterController {
     
     //==================================================
@@ -18,13 +23,32 @@ class CharacterController {
     
     static let getAllCharactersURL = CharacterController.baseURL?.appendingPathExtension("json")
     
+    var characters = [Character]() {
+        
+        didSet {
+            
+            DispatchQueue.main.async {
+            
+                self.delegate?.charactersUpdated(characters: self.characters)
+            }
+        }
+    }
+    
+    var delegate: CharacterControllerDelegate?
+    
     //==================================================
     // MARK: - Initializers
     //==================================================
     
     init() {
         
-        getFromAPI()
+        getFromAPI { (characters) in
+            
+            if characters.count > 0 {
+                
+                self.characters = characters
+            }
+        }
     }
     
     //==================================================
@@ -49,10 +73,18 @@ class CharacterController {
                 
                 NSLog("New character \"\(newCharacter.name)\" successfully added to the API.")
             }
+            
+            self.getFromAPI { (characters) in
+                
+                if characters.count > 0 {
+                    
+                    self.characters = characters
+                }
+            }
         }
     }
     
-    func getFromAPI(allCharacters completion: (_ characters: [Character]) -> Void = { _ in }) {
+    func getFromAPI(allCharacters completion: @escaping (_ characters: [Character]) -> Void = { _ in }) {
         
         guard let getAllCharactersURL = CharacterController.getAllCharactersURL else { return }
         
@@ -87,7 +119,9 @@ class CharacterController {
                         return
                 }
                 
-                let characters = arrayOfCharacterDictionaries.flatMap{ Character(identifier: $0, dictionary: $1) }
+                print("arrayOfCharacterDictionaries = \(arrayOfCharacterDictionaries)")
+                
+                let characters = arrayOfCharacterDictionaries.flatMap{ Character(identifier: $0.0, dictionary: $0.1) }
                 
                 completion(characters)
             }
